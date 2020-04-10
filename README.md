@@ -1,36 +1,45 @@
 artificial-cilantro
 ==============================
 
-Code for Team Artificial Cilantro's Machine Learning Final Project.
+Code for Team Artificial Cilantro's Machine Learning Final Project. The file structure is based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>.
 
-Setting up virtual env
-------------
-A shared virtual environment allows us to avoid bugs from using different versions of the same software packages. If you want to use a new Python package, you can edit the `requirements.txt` file.
-
-### Install virtualenv
-```
-pip3 install virtualenv
-pip3 install virtualenvwrapper
-```
-
-I'm not sure how Macs work. You may have to edit your `.bashrc` file to add the following lines so that you can use `virtualenvwrapper` commands on the terminal:
-```
-export WORKON_HOME=~/.virtualenvs
-export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
-```
-
-If you ran the above command, you will have to open up a new terminal to refresh the `.bashrc`. Then you can create the virtualenv as follows:
+You can use the following commands to download all the packages and the raw datasets:
 
 ```
-mkvirtualenv artificial-cilantro
+make create_environment
 workon artificial-cilantro
-pip3 install -r requirements.txt
+make requirements
+make data
 ```
 
-`workon artificial-cilantro` enters the Python virtualenv for the project. To exit the virtualenv, you can type `deactivate` on the terminal.
+These commands call on code in the `Makefile`. 
+- `make create_environment` sets up a virtualenv for our project where we can ensure the packages we use are *exactly* the same. `workon artificial-cilantro` activates the newly created environment; you can simply type `deactivate` into the command line if you want to exit the virtual env.
+- `make requirements` downloads all packages in `requirements.txt` to the virtual env.
+- `make data` downloads the raw data from CodaLab into the `data/raw` folder.
+
+Code in your own git branch
+------------
+There are 5 of us which will guarantee commit push hell if we are all pushing code to master. What we can do instead is copy the current code in master to our own branch, edit it there, and once we are done we can send in a *pull request* for the master branch to *pull in* the changes from our own branch.
+
+### Creating a new branch
+I've seen branches divided across people (e.g. branch `eric`) or across tasks (e.g. branch `embeddings`).
+```
+git checkout -b mybranchname
+```
+
+### Pushing branch to Github
+```
+git push origin mybranchname
+```
+
+### Submitting a pull request
+Go to the github repo and click the `New pull request` button. This will allow us to review code differences and whether we need to address any merge conflicts.
+
+### Avoiding merge conflicts
+Merge conflicts occur when there are two different changes to a file made off the same commit. Git does not know how to merge the two changes together so it will announce a "merge conflict" and throw the job over to us. To avoid this, we should try to work on separate files. For certain master files (e.g. `train_model.py` concurrent work may be unavoidable and changes should be coordinated with each other. But we can cross that bridge later.
 
 
-Project Organization
+Project file structure
 ------------
 
     ├── LICENSE
@@ -81,4 +90,4 @@ Project Organization
 
 --------
 
-<p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
+

@@ -20,13 +20,28 @@ endif
 # COMMANDS                                                                      #
 #################################################################################
 
+## Set up virtual env in case you don't already have it
+virtualenv:
+	pip3 install virtualenv
+	pip3 install virtualenvwrapper
+# You may have to open your .bashrc code and add the following lines so that you can use
+# virtualenv commands on the terminal:
+export WORKON_HOME=~/.virtualenvs
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+
+
 ## Install Python Dependencies
 requirements: test_environment
+# 	mkvirtualenv artificial-cilantro
+# 	workon artificial-cilantro
 	$(PYTHON_INTERPRETER) -m pip install -U pip setuptools wheel
 	$(PYTHON_INTERPRETER) -m pip install -r requirements.txt
 
 ## Make Dataset
 data: requirements
+	# download data
+	wget -O data/raw/train.csv https://worksheets.codalab.org/rest/bundles/0x7b873062afd04a7f82a7a49940ee7737/contents/blob/ 
+	wget -O data/raw/dev.csv https://worksheets.codalab.org/rest/bundles/0xa63401efaa6d44e39ed6ed9fe7e08cd2/contents/blob/
 	$(PYTHON_INTERPRETER) src/data/make_dataset.py data/raw data/processed
 
 ## Delete all compiled Python files
