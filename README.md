@@ -17,9 +17,13 @@ These commands call on code in the `Makefile`.
 - `make requirements` downloads all packages in `requirements.txt` to the virtual env.
 - `make data` downloads the raw data from CodaLab into the `data/raw` folder.
 
+You can run `make help` to see a summary of all the `make` commands.
+
 Code in your own git branch
 ------------
-There are 5 of us which will guarantee commit push hell if we are all pushing code to master. What we can do instead is copy the current code in master to our own branch, edit it there, and once we are done we can send in a *pull request* for the master branch to *pull in* the changes from our own branch.
+There are 5 of us working on this project. If we are all pushing code to the master branch, we will enter "commit push hell" where our code commits get mixed up with everyone else's code commits. 
+
+What we can do instead is copy the current code in master to our own branch, edit it there, and once we are done we can send in a *pull request* for the master branch to *pull in* the changes from our own branch.
 
 ### Creating a new branch
 I've seen branches divided across people (e.g. branch `eric`) or across tasks (e.g. branch `embeddings`).
@@ -41,6 +45,7 @@ Merge conflicts occur when there are two different changes to a file made off th
 
 Project file structure
 ------------
+Let's try to follow it.
 
     ├── LICENSE
     ├── Makefile           <- Makefile with commands like `make data` or `make train`
@@ -90,4 +95,8 @@ Project file structure
 
 --------
 
-
+Helpful References
+---------
+Using `make`: https://medium.com/@davidstevens_16424/make-my-day-ta-science-easier-e16bc50e719c
+Cookie cutter project template: https://drivendata.github.io/cookiecutter-data-science/
+GitHub commands: https://rogerdudler.github.io/git-guide/
